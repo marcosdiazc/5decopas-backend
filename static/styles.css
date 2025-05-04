@@ -1,0 +1,147 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    line-height: 1.6;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+  
+  header {
+    background-color: #002b45;
+    color: white;
+    padding: 1rem 0;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  nav a:hover {
+    color: #00b4d8;
+  }
+  
+  h1, h2 {
+    margin-bottom: 1rem;
+  }
+  
+  main {
+    margin-top: 2rem;
+  }
+  
+  input, select, button {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #0077b6;
+    color: white;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #023e8a;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  th, td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .tab {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: #e0e0e0;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+  }
+  
+  .tab.active {
+    background: #0077b6;
+    color: white;
+  }
+  
+  footer {
+    background-color: #002b45;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .tabs {
+      justify-content: flex-start;
+    }
+  }
+  

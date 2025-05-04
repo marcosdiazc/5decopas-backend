@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Agregar Jugador</h2>
+
+<form method="POST" action="/admin">
+  <label for="name">Nombre completo</label>
+  <input type="text" name="name" required>
+
+  <label for="email">Correo electrónico</label>
+  <input type="email" name="email" required>
+
+  <label for="position">Posición</label>
+  <input type="text" name="position">
+
+  <label for="genero">Género</label>
+  <select name="genero" required>
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+  </select>
+
+  <label for="equipo">Equipo</label>
+  <select name="equipo" required>
+    <option value="Azul">Azul</option>
+    <option value="Blanco">Blanco</option>
+    <option value="Celeste">Celeste</option>
+  </select>
+
+  <button type="submit">Agregar Jugador</button>
+</form>
+{% endblock %}

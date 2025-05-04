@@ -1,0 +1,38 @@
+# Entornos virtuales
+venv/
+.env
+*.env
+
+# Archivos de entorno
+.env.*
+*.env.local
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos de log
+*.log
+
+# Archivos de base de datos locales (por si algún día trabajás con SQLite)
+*.sqlite3
+
+# Archivos de sistema y VSCode
+.DS_Store
+.vscode/
+.idea/
+
+# Node (por si usás npm en el front)
+node_modules/
+
+# GitHub Pages build output (si usás `dist` o `build`)
+dist/
+build/
+
+# Archivos grandes accidentales
+*.mp4
+*.zip
+*.tar
+*.gz
+*.bak
