@@ -2,7 +2,13 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from services.supabase_service import insertar_jugador, obtener_jugadores  # 👈
+
+from services.supabase_service import (
+    insertar_jugador,
+    obtener_jugadores,
+    obtener_jugador_por_id,
+    actualizar_estadisticas
+)
 
 load_dotenv()
 
@@ -63,7 +69,32 @@ def admin():
 
         return redirect("/admin")
 
-    return render_template("admin.html")
+    jugadores = obtener_jugadores()
+    return render_template("admin.html", jugadores=jugadores)
+
+@app.route("/jugador/<int:id>", methods=["GET", "POST"])
+def editar_estadisticas(id):
+    if not session.get("admin_logged_in"):
+        flash("Tenés que iniciar sesión", "error")
+        return redirect("/login")
+
+    if request.method == "POST":
+        goals = request.form.get("goals", type=int)
+        assistances = request.form.get("assistances", type=int)
+        matches = request.form.get("matches", type=int)
+
+        try:
+            actualizar_estadisticas(id, {
+                "goals": goals,
+                "assistances": assistances,
+                "matches": matches
+            })
+            flash("Estadísticas actualizadas", "success")
+        except Exception as e:
+            flash(f"Error: {e}", "error")
+
+    jugador = obtener_jugador_por_id(id)
+    return render_template("editar_estadisticas.html", jugador=jugador)
 
 @app.route("/inscripcion", methods=["POST"])
 def inscripcion():
@@ -97,4 +128,10 @@ def jugadores():
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
 
-
+@app.route("/test_supabase")
+def test_supabase():
+    try:
+        data = obtener_jugadores()
+        return jsonify({"ok": True, "jugadores": data}), 200
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500

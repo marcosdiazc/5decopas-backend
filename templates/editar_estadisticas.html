@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar estadísticas de {{ jugador.name }}</h2>
+
+<form method="POST">
+  <label for="goals">Goles</label>
+  <input type="number" name="goals" value="{{ jugador.goals or 0 }}" min="0">
+
+  <label for="assistances">Asistencias</label>
+  <input type="number" name="assistances" value="{{ jugador.assistances or 0 }}" min="0">
+
+  <label for="matches">Partidos jugados</label>
+  <input type="number" name="matches" value="{{ jugador.matches or 0 }}" min="0">
+
+  <button type="submit">Guardar</button>
+</form>
+
+<br>
+<a href="/admin">← Volver al panel</a>
+{% endblock %}

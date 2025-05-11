@@ -28,4 +28,33 @@
 
   <button type="submit">Agregar Jugador</button>
 </form>
+
+<hr>
+
+<h2>Jugadores Registrados</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Posición</th>
+      <th>Género</th>
+      <th>Equipo</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for j in jugadores %}
+      <tr>
+        <td>{{ j.name }}</td>
+        <td>{{ j.email }}</td>
+        <td>{{ j.position or "-" }}</td>
+        <td>{{ j.gender }}</td>
+        <td>{{ j.team }}</td>
+        <td><a href="/jugador/{{ j.id }}">Editar estadísticas</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
