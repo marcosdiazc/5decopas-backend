@@ -1,147 +1,251 @@
-/* Reset básico */
+/* --- Reset y estructura base --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #f9f9f9;
-    color: #222;
-    line-height: 1.6;
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 1rem 0;
-  }
-  
-  header {
-    background-color: #002b45;
-    color: white;
-    padding: 1rem 0;
-  }
-  
-  .header-content {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0d1b2a;
+  color: #e0e1dd;
+  line-height: 1.6;
+}
+
+main {
+  flex: 1;
+  margin-top: 2rem;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+/* --- Header --- */
+header {
+  background-color: #1b263b;
+  color: white;
+  padding: 1rem 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 50px;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 0.8rem;
+  margin-top: 4px;
+}
+
+/* --- Navegación --- */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  transition: max-height 0.4s ease;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+  color: #00b4d8;
+}
+
+/* --- Menú hamburguesa --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 24px;
+  height: 3px;
+  background: #e0e1dd;
+  transition: .3s;
+}
+
+.hamburger.active div:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.active div:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active div:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- Responsive menú --- */
+@media (max-width: 768px) {
+  .hamburger {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
   }
-  
-  .logo {
-    height: 50px;
-  }
-  
+
   nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  nav a:hover {
-    color: #00b4d8;
-  }
-  
-  h1, h2 {
-    margin-bottom: 1rem;
-  }
-  
-  main {
-    margin-top: 2rem;
-  }
-  
-  input, select, button {
+    flex-direction: column;
     width: 100%;
-    padding: 0.7rem;
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    background-color: #0077b6;
-    color: white;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  button:hover {
-    background-color: #023e8a;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    background: white;
-    border-radius: 10px;
+    max-height: 0;
     overflow: hidden;
   }
-  
-  th, td {
-    padding: 0.8rem;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
+
+  nav ul.open {
+    max-height: 500px; /* espacio para los links */
   }
-  
-  .tabs {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .tab {
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    background: #e0e0e0;
-    cursor: pointer;
-    transition: 0.2s;
-    font-weight: 600;
-  }
-  
-  .tab.active {
-    background: #0077b6;
-    color: white;
-  }
-  
-  footer {
-    background-color: #002b45;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: 3rem;
-  }
-  
-  /* Responsive */
-  @media (max-width: 600px) {
-    .header-content {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    nav ul {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .tabs {
-      justify-content: flex-start;
-    }
-  }
-  
+}
+
+/* --- Formulario --- */
+input, select, button {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #1b263b;
+  color: white;
+}
+
+button {
+  background: linear-gradient(to right, #00b4d8, #0077b6);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+
+button:hover {
+  background-color: #0096c7;
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 150, 199, 0.4);
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 8px rgba(0, 119, 182, 0.2);
+}
+
+
+/* --- Tabla de jugadores --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #1b263b;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+/* --- Tabs --- */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: #415a77;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.tab.active {
+  background: #0077b6;
+  color: white;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: #1b263b;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+}
+
+.quienes-somos {
+  background-color: #1b263b;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 3rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  color: #e0e1dd;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.quienes-somos h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.quienes-somos p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.slider-container {
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slider-wrapper img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 16px;
+}
+

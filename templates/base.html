@@ -1,6 +1,62 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 de Copas FC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
 
-{% block head_css %}
-  {{ super() }}
-  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
-{% endblock %}
+  <!-- HEADER -->
+  <header>
+    <div class="container header-content">
+      <a href="/"><img src="{{ url_for('static', filename='logo.png') }}" class="logo" /></a>
+      <h1 class="site-title">5 de Copas FC</h1>
+      <div class="hamburger" id="burger"><div></div><div></div><div></div></div>
+      <nav>
+        <ul id="nav-ul">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/admin">Admin</a></li>
+          {% if session.get("admin_logged_in") %}
+            <li><a href="/logout">Cerrar sesión</a></li>
+          {% else %}
+            <li><a href="/login">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 5 de Copas Fútbol Club</p>
+  </footer>
+
+  <script>
+    // Simple JS para menú hamburguesa
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav-ul");
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      nav.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
