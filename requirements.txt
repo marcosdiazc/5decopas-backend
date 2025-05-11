@@ -2,3 +2,5 @@ Flask
 python-dotenv
 psycopg2-binary
 flask-cors
+supabase
+gunicorn
