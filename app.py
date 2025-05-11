@@ -2,12 +2,12 @@ from flask import Flask, render_template, request, redirect, session, url_for, f
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-
 from services.supabase_service import (
     insertar_jugador,
     obtener_jugadores,
     obtener_jugador_por_id,
-    actualizar_estadisticas
+    actualizar_estadisticas,
+    insertar_inscripcion
 )
 
 load_dotenv()
@@ -100,7 +100,7 @@ def editar_estadisticas(id):
 def inscripcion():
     data = request.form or request.json
 
-    player = {
+    inscripto = {
         "name": data.get("name"),
         "email": data.get("email"),
         "gender": data.get("genero"),
@@ -108,12 +108,12 @@ def inscripcion():
         "position": data.get("posicion")
     }
 
-    if not all([player["name"], player["email"], player["gender"], player["team"]]):
+    if not all([inscripto["name"], inscripto["email"], inscripto["gender"], inscripto["team"]]):
         return jsonify({"error": "Faltan campos obligatorios"}), 400
 
     try:
-        insertar_jugador(player)
-        return jsonify({"message": "Jugador registrado con éxito"}), 200
+        insertar_inscripcion(inscripto)
+        return jsonify({"message": "Inscripción registrada con éxito"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

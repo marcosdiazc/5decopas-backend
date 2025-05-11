@@ -19,4 +19,6 @@ def obtener_jugador_por_id(id):
 def actualizar_estadisticas(id, data):
     supabase.table("players").update(data).eq("id", id).execute()
 
+def insertar_inscripcion(data):
+    supabase.table("inscripciones").insert(data).execute()
 
